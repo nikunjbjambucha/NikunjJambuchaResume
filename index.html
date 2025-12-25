@@ -1,768 +1,1491 @@
-
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset='UTF-8' /> 
-		<meta name='description' content='ExtentReports (by Anshoo Arora) is a reporting library for automation testing for .NET and Java. It creates detailed and beautiful HTML reports for modern browsers. ExtentReports shows test and step summary along with dashboards, system and environment details for quick analysis of your tests.' />
-		<meta name='robots' content='noodp, noydir' />
-		<meta name='viewport' content='width=device-width, initial-scale=1' />
-		<meta name='extentx' id='extentx' content='' />
-		
-		<title>
-				Resume - Nikunj Jambucha
-		</title>
-		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600' rel='stylesheet' type='text/css'>
-		<link href='https://cdn.rawgit.com/anshooarora/extentreports/6032d73243ba4fe4fb8769eb9c315d4fdf16fe68/cdn/extent.css' type='text/css' rel='stylesheet' />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">   
-		<style>
-			td{
-				white-space:pre-wrap;
-  				word-break:break-word;
-			}
-			.filters > div{
-				padding: 5px;
-			}
-			.videobox{
-				z-index: 0;
-				width:100%;
-				height:90%;
-				display: none;
-				border-radius: 14px;
-				overflow: hidden;
-				box-shadow: 0px 20px 20px #0000003b;
-			}
-			.thevideo{
-				
-				width:100%;
-				height:100%;
-				display: block;
-				cursor: pointer;
-			}
 
-	
+<head>
+	<meta charset='UTF-8' />
+	<meta name='description'
+		content='ExtentReports (by Anshoo Arora) is a reporting library for automation testing for .NET and Java. It creates detailed and beautiful HTML reports for modern browsers. ExtentReports shows test and step summary along with dashboards, system and environment details for quick analysis of your tests.' />
+	<meta name='robots' content='noodp, noydir' />
+	<meta name='viewport' content='width=device-width, initial-scale=1' />
+	<meta name='extentx' id='extentx' content='' />
 
-		</style>
-	</head>
-	
-	
-	<body class='extent default standard hide-overflow'>
-		<!-- nav -->
-		<nav>
-			<div class='logo-container blue darken-2'>
-				<a href='https://www.linkedin.com/in/nikunjjambucha/'>
-					<span>Nikunj Jambucha</span>
-				</a>
-				<a href='#' data-activates='slide-out' class='button-collapse hide-on-large-only'><i class='mdi-navigation-apps'></i></a>
-			</div>
-			<ul id='slide-out' class='side-nav fixed hide-on-med-and-down'>
-				<li class='analysis waves-effect active'><a href='#' class='test-view' onclick="_updateCurrentStage(0)"><i class='mdi-action-dashboard'></i>Test Details</a></li>
-				<li class='analysis waves-effect'>
-					<a href='#' onclick="_updateCurrentStage(-1)" class='dashboard-view'><i class='mdi-action-track-changes'></i></i>Analysis</a>
-				</li>
-			</ul>
-			<span class='report-name'>QA Automation Enginner</span> <span class='report-headline'></span>
-			<ul class='right hide-on-med-and-down nav-right'>
-				<li class='theme-selector' style='cursor:pointer;' alt='Click to toggle dark theme' title='Click to toggle dark theme'>
-					<i class='mdi-hardware-desktop-windows'></i>
-				</li>
-				<li>
-					<p id="myId" style="line-height:190%"></p> 
-					<script> 
-					var date = new Date(); 
-					var dd = date.getDate(); 
-					const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+	<title>
+		Resume - Nikunj Jambucha
+	</title>
+	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600' rel='stylesheet' type='text/css'>
+	<link
+		href='https://cdn.rawgit.com/anshooarora/extentreports/6032d73243ba4fe4fb8769eb9c315d4fdf16fe68/cdn/extent.css'
+		type='text/css' rel='stylesheet' />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<style>
+		.table-results td {
+			white-space: normal;
+			word-break: break-word;
+			vertical-align: top;
+			padding: 6px 8px;
+			line-height: 1.5;
+		}
+
+		.table-results td:empty {
+			padding: 0;
+		}
+
+		.table-results tr:first-child td {
+			padding-top: 10px;
+		}
+
+		.table-results b {
+			font-weight: 600;
+		}
+
+		.table-results .step-details {
+			font-size: 13px;
+			color: #444;
+		}
+
+		.filters>div {
+			padding: 5px;
+		}
+
+		.videobox {
+			z-index: 0;
+			width: 100%;
+			height: 90%;
+			display: none;
+			border-radius: 14px;
+			overflow: hidden;
+			box-shadow: 0px 20px 20px #0000003b;
+		}
+
+		.thevideo {
+
+			width: 100%;
+			height: 100%;
+			display: block;
+			cursor: pointer;
+		}
+
+		.career-card {
+			padding: 12px 14px;
+			margin-top: 10px;
+		}
+
+		.career-card {
+			max-width: 900px;
+			margin: 20px auto;
+		}
+
+		.career-summary {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 14px 30px;
+		}
+
+		.summary-item {
+			background: #f9f9f9;
+			padding: 10px 12px;
+			border-radius: 6px;
+			align-items: center;
+		}
+
+		.summary-item i {
+			font-size: 14px;
+			margin-top: 0;
+		}
+
+		.summary-text {
+			display: flex;
+			flex-direction: column;
+		}
+
+		.summary-title {
+			font-weight: 600;
+			font-size: 13px;
+		}
+
+		.summary-desc {
+			font-size: 12px;
+			color: #666;
+		}
+
+		.summary-item.pass i {
+			color: #2e7d32;
+		}
+
+		.summary-item.trophy i {
+			color: #f9a825;
+		}
+
+		.heading .name {
+			margin-bottom: 4px;
+			font-weight: 600;
+		}
+
+		.heading .title {
+			font-size: 15px;
+			font-weight: 500;
+			color: #2e7d32;
+			margin-bottom: 2px;
+		}
+
+		.heading .subtitle {
+			font-size: 13px;
+			color: #555;
+		}
+
+		.summary-text-block {
+			padding: 12px 10px;
+		}
+
+		.summary-list {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+
+		.summary-list li {
+			display: flex;
+			align-items: flex-start;
+			gap: 10px;
+			margin-bottom: 12px;
+			line-height: 1.6;
+			color: #444;
+		}
+
+		.summary-list i {
+			color: #2e7d32;
+			margin-top: 3px;
+			font-size: 14px;
+		}
+
+		.summary-list li span {
+			max-width: 92%;
+		}
+
+		.step-details b {
+			font-weight: 600;
+		}
+
+		.table-results td {
+			line-height: 1.6;
+		}
+
+		.table-results i {
+			color: #2e7d32;
+			opacity: 0.85;
+		}
+
+		/* Theme-safe filter bar */
+		.extent.dark .filters {
+			background: #1f1f1f;
+		}
+
+		.extent.dark .filters a {
+			background-color: #2e7d32 !important;
+		}
+
+		.extent.dark .filters i {
+			color: #fff !important;
+		}
+
+		/* Snapshot card */
+		.extent.dark .career-card {
+			background: #1e1e1e;
+			border: 0px solid #2c2c2c;
+		}
+
+		/* Summary tiles */
+		.extent.dark .summary-item {
+			background: #252525;
+			color: #ddd;
+		}
+
+		.extent.dark .summary-title {
+			color: #e0e0e0;
+		}
+
+		.extent.dark .summary-desc {
+			color: #bdbdbd;
+		}
+
+		/* Icons */
+		.extent.dark .summary-item.pass i {
+			color: #66bb6a;
+		}
+
+		.extent.dark .summary-item.trophy i {
+			color: #fbc02d;
+		}
+
+		/* Summary bullet list */
+		.extent.dark .summary-list li {
+			color: #d0d0d0;
+		}
+
+		.extent.dark .summary-list i {
+			color: #66bb6a;
+		}
+
+		/* Tables */
+
+		.extent.dark .table-results td {
+			color: #d5d5d5;
+			border-color: #2e2e2e;
+		}
+
+		.extent.dark .table-results th {
+			color: #eeeeee;
+			border-color: #2e2e2e;
+		}
+
+		.title {
+			margin: 4px 0 2px;
+			font-size: 15px;
+			font-weight: 500;
+			color: #555;
+		}
+
+		.subtitle {
+			margin: 0;
+			font-size: 13px;
+			color: #555;
+			line-height: 1.5;
+		}
+
+		.extent.default .title {
+			color: #555;
+		}
+
+		.extent.default .subtitle {
+			color: #555;
+		}
+
+		.extent.dark .title {
+			color: #bdbdbd;
+		}
+
+		.extent.dark .subtitle {
+			color: #bdbdbd;
+		}
+
+		.resume-btn {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			padding: 8px 14px;
+			border-radius: 6px;
+			border: 1px solid #2e7d32;
+			color: #2e7d32;
+			font-size: 13px;
+			font-weight: 600;
+			background: transparent;
+			transition: all 0.25s ease;
+			text-decoration: none;
+		}
+
+		.resume-btn i {
+			font-size: 14px;
+		}
+
+		.resume-btn:hover {
+			background: #2e7d32;
+			color: #fff;
+			box-shadow: 0 4px 12px rgba(46, 125, 50, 0.25);
+			transform: translateY(-1px);
+		}
+	</style>
+</head>
+
+
+<body class='extent default standard hide-overflow'>
+	<!-- nav -->
+	<nav>
+		<div class='logo-container blue darken-2'>
+			<a href='https://www.linkedin.com/in/nikunjjambucha/'>
+				<span>Nikunj Jambucha</span>
+			</a>
+			<a href='#' data-activates='slide-out' class='button-collapse hide-on-large-only'><i
+					class='mdi-navigation-apps'></i></a>
+		</div>
+		<ul id='slide-out' class='side-nav fixed hide-on-med-and-down'>
+			<li class='analysis waves-effect active'><a href='#' class='test-view' onclick="_updateCurrentStage(0)"><i
+						class='mdi-action-dashboard'></i>Test Details</a></li>
+			<li class='analysis waves-effect'>
+				<a href='#' onclick="_updateCurrentStage(-1)" class='dashboard-view'><i
+						class='mdi-action-track-changes'></i></i>Analysis</a>
+			</li>
+		</ul>
+		<span class='report-name'>QA Automation Engineer</span><span class='report-headline'></span>
+		<ul class='right hide-on-med-and-down nav-right'>
+			<li class='theme-selector' style='cursor:pointer;' alt='Click to toggle dark theme'
+				title='Click to toggle dark theme'>
+				<i class='mdi-hardware-desktop-windows'></i>
+			</li>
+			<li>
+				<p id="myId" style="line-height:190%"></p>
+				<script>
+					var date = new Date();
+					var dd = date.getDate();
+					const month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 					var mm = month[date.getMonth()];
-					var yyyy = date.getFullYear(); 
-					var newDate = dd + " " + mm + " " +yyyy; 
-					var p = document.getElementById("myId"); 
+					var yyyy = date.getFullYear();
+					var newDate = dd + " " + mm + " " + yyyy;
+					var p = document.getElementById("myId");
 					p.innerHTML = newDate; 
-					</script> 
-				</li>
-			</ul>
-		</nav>
-		<!-- /nav -->
-		
-		<!-- container -->
-		<div class='container'>
-			
-			<!-- dashboard -->
-			<div id='dashboard-view' class='row'>
-				<div class='charts'>
-					<div class='col s12 m6 l4 fh'> 
-						<div class='card-panel'> 
-							
-							<div Class='videobox'>
-								<a href='https://github.com/nikunjbjambucha/Selenium-Csharp-Framework'>
+				</script>
+			</li>
+		</ul>
+	</nav>
+	<!-- /nav -->
+
+	<!-- container -->
+	<div class='container'>
+
+		<!-- dashboard -->
+		<div id='dashboard-view' class='row'>
+			<div class='charts'>
+				<div class='col s12 m6 l4 fh'>
+					<div class='card-panel'>
+
+						<div Class='videobox'>
+							<a href='https://github.com/nikunjbjambucha/Selenium-Csharp-Framework'>
 								<video id='myvid' class='thevideo' loop preload='none'>
-									<source src='Projects\Project1.mp4' type='video/mp4'>
+									<source src='Projects/Project4.mp4' type='video/mp4'>
 									</source>
 								</video></a>
-							</div>		
-						
-							<div class='projectinfo'>
-								<span class='panel-name'><b>Selenium C# Automation Framework</b></span> 
-								<span class='label pass outline right'>Click Here</span>
-								<table class='table-results'>
-									<thead>
-										<tr>
-											<th style="width: 8%" ></th>
-											<th style="width: 92%"></th>
-										</tr>
-									</thead>
-									<tbody>
-											<tr>
-												<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
-												<td class='step-details' >MS Test Framework </td>
-											</tr>
-											<tr>
-												<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
-												<td class='step-details' >POM (Page Object Model)</td>
-											</tr>
-											<tr>
-												<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
-												<td class='step-details' >TDD Test Data Driven </td>
-											</tr>
-											<tr>
-												<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
-												<td class='step-details' >Multi browser support</td>
-											</tr>
-											<tr>
-												<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
-												<td class='step-details' >Integrated Extend Reports</td>
-											</tr>
-											<tr>
-												<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
-												<td class='step-details' >Database Integration</td>
-											</tr>
-									</tbody>
-								</table>
-							</div>
-						</div> 
-					</div> 
-					<div class='col s12 m6 l4 fh'> 
-						<div class='card-panel'> 
-							<div Class='videobox'>
-								<a href='https://github.com/nikunjbjambucha/UITestAutomationFramework'>
-								<video id='myvid' class='thevideo' loop preload='none'>
-									<source src='Projects\Project2.mp4' type='video/mp4'>
-									</source>
-								</video>
-								</a>
-							</div>		
-							<div class='projectinfo'>
-								<span class='panel-name'><b>Selenium Java Automation Framework</b></span> 
-								<span class='label pass outline right'>Click Here</span>
-								<table class='table-results'>
-									<thead>
-										<tr>
-											<th style="width: 8%" ></th>
-											<th style="width: 92%"></th>
-										</tr>
-									</thead>
-									<tbody>
-											<tr>
-												<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
-												<td class='step-details' >Mavan Project</td>
-											</tr>
-											<tr>
-												<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
-												<td class='step-details' >TestNG Framework</td>
-											</tr>
-											<tr>
-												<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
-												<td class='step-details' >POM (Page Object Model)</td>
-											</tr>
-											<tr>
-												<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
-												<td class='step-details' >TDD Test Data Driven </td>
-											</tr>
-											
-											<tr>
-												<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
-												<td class='step-details' >Integrated Extend Reports</td>
-											</tr>
-											<tr>
-												<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
-												<td class='step-details' >Database Integration</td>
-											</tr>
-									</tbody>
-								</table>
-							</div>
-						</div> 
-					</div>
-					<div class='col s12 m12 l4 fh'> 
-						<div class='card-panel'> 
-							<div Class='videobox'>
-								<a href='https://github.com/nikunjbjambucha/playwright-Js-Framework'>
-								<video id='myvid' class='thevideo' loop preload='none'>
-									<source src='Projects\Project3.mp4' type='video/mp4'>
-									</source>
-								</video>
-								</a>
-							</div>		
-							<div class='projectinfo'>
-								<span class='panel-name'><b>Playwright js Automation Framework</b></span> 
-								<span class='label pass outline right'>Click Here</span>
-								<table class='table-results'>
-									<thead>
-										<tr>
-											<th style="width: 8%" ></th>
-											<th style="width: 92%"></th>
-										</tr>
-									</thead>
-									<tbody>
-											<tr>
-												<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
-												<td class='step-details' >JavaScript script</td>
-											</tr>
-											<tr>
-												<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
-												<td class='step-details' >POM (Page Object Model)</td>
-											</tr>
-											<tr>
-												<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
-												<td class='step-details' >Multi browser support </td>
-											</tr>
-											
-											<tr>
-												<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
-												<td class='step-details' >Integrated allure reports</td>
-											</tr>
-											<tr>
-												<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
-												<td class='step-details' >No driver dependency</td>
-											</tr>
-											<tr>
-												<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
-												<td class='step-details' >Reduce execution time</td>
-											</tr>
-									</tbody>
-								</table>
-							</div>
-						</div> 
-					</div>
-				</div>
-				<div class='system-view'>
-					<div class='col l4 m12 s12'>
-						<div class='card-panel'>
-							<span class='label pass outline right'>Personal Details</span>
-							<table>
+						</div>
+
+						<div class='projectinfo'>
+							<span class='panel-name'><b>Enterprise QA Automation Platform (Java)</b></span>
+							<span class='label pass outline right'>View on GitHub</span>
+							<table class='table-results'>
 								<thead>
 									<tr>
-										<th>Param</th>
-										<th>Value</th>
+										<th style="width: 8%"></th>
+										<th style="width: 92%"></th>
 									</tr>
 								</thead>
 								<tbody>
-										<tr>
-											<td>Full Name</td>
-											<td>Jambucha Nikunj Bhupatbhai</td>
-										</tr>
-										<tr>
-											<td>Date of Birth</td>
-											<td>24/04/1999</td>
-										</tr>
-										<tr>
-											<td>Marital Status</td>
-											<td>Married</td>
-										</tr>
-										<tr>
-											<td>Passport</td>
-											<td>Yes</td>
-										</tr>
-										<tr>
-											<td>Languages Known</td>
-											<td>English, Hindi, Gujrati</td>
-										</tr>
+									<tr>
+										<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
+										<td class='step-details'>Java-based unified automation for Web, API & Mobile
+											testing</td>
+									</tr>
+									<tr>
+										<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
+										<td class='step-details'>WebSocket-based QA Control Center communication</td>
+									</tr>
+									<tr>
+										<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
+										<td class='step-details'>Redis-backed global test data storage</td>
+									</tr>
+									<tr>
+										<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
+										<td class='step-details'>QA Control Center for APIs, queries & object
+											repositories</td>
+									</tr>
+									<tr>
+										<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
+										<td class='step-details'>Parallel & scheduled CI/CD execution via Jenkins
+											pipelines</td>
+									</tr>
+									<tr>
+										<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
+										<td class='step-details'>Enterprise-grade reporting with Extent Reports &
+											insights</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class='col s12 m6 l4 fh'>
+					<div class='card-panel'>
+
+						<div Class='videobox'>
+							<a href='https://github.com/nikunjbjambucha/Selenium-Csharp-Framework'>
+								<video id='myvid' class='thevideo' loop preload='none'>
+									<source src='Projects/Project1.mp4' type='video/mp4'>
+									</source>
+								</video></a>
+						</div>
+
+						<div class='projectinfo'>
+							<span class='panel-name'><b>Selenium Automation Framework (C#)</b></span>
+							<span class='label pass outline right'>View on GitHub</span>
+							<table class='table-results'>
+								<thead>
+									<tr>
+										<th style="width: 8%"></th>
+										<th style="width: 92%"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
+										<td class='step-details'>MSTest-based automation framework</td>
+									</tr>
+									<tr>
+										<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
+										<td class='step-details'>Page Object Model (POM) architecture</td>
+									</tr>
+									<tr>
+										<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
+										<td class='step-details'>Data-driven testing support</td>
+									</tr>
+									<tr>
+										<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
+										<td class='step-details'>Cross-browser UI execution</td>
+									</tr>
+									<tr>
+										<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
+										<td class='step-details'>Integrated Extent Reports</td>
+									</tr>
+									<tr>
+										<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
+										<td class='step-details'>Database validation support</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class='col s12 m6 l4 fh'>
+					<div class='card-panel'>
+						<div Class='videobox'>
+							<a href='https://github.com/nikunjbjambucha/UITestAutomationFramework'>
+								<video id='myvid' class='thevideo' loop preload='none'>
+									<source src='Projects/Project2.mp4' type='video/mp4'>
+									</source>
+								</video>
+							</a>
+						</div>
+						<div class='projectinfo'>
+							<span class='panel-name'><b>Selenium Automation Framework (Java)</b></span>
+							<span class='label pass outline right'>View on GitHub</span>
+							<table class='table-results'>
+								<thead>
+									<tr>
+										<th style="width: 8%"></th>
+										<th style="width: 92%"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
+										<td class='step-details'>Maven-based Java automation project</td>
+									</tr>
+									<tr>
+										<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
+										<td class='step-details'>TestNG testing framework</td>
+									</tr>
+									<tr>
+										<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
+										<td class='step-details'>Page Object Model (POM) architecture</td>
+									</tr>
+									<tr>
+										<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
+										<td class='step-details'>Data-driven testing support</td>
+									</tr>
+
+									<tr>
+										<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
+										<td class='step-details'>Integrated Extent Reports</td>
+									</tr>
+									<tr>
+										<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
+										<td class='step-details'>Database validation support</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class='col s12 m6 l4 fh'>
+					<div class='card-panel'>
+						<div Class='videobox'>
+							<a href='https://github.com/nikunjbjambucha/playwright-Js-Framework'>
+								<video id='myvid' class='thevideo' loop preload='none'>
+									<source src='Projects/Project3.mp4' type='video/mp4'>
+									</source>
+								</video>
+							</a>
+						</div>
+						<div class='projectinfo'>
+							<span class='panel-name'><b>Playwright Automation Framework (JavaScript)</b></span>
+							<span class='label pass outline right'>View on GitHub</span>
+							<table class='table-results'>
+								<thead>
+									<tr>
+										<th style="width: 8%"></th>
+										<th style="width: 92%"></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
+										<td class='step-details'>JavaScript-based Playwright automation framework</td>
+									</tr>
+									<tr>
+										<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
+										<td class='step-details'>Page Object Model (POM) architecture</td>
+									</tr>
+									<tr>
+										<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
+										<td class='step-details'>Cross-browser execution (Chromium, Firefox, WebKit)
+										</td>
+									</tr>
+
+									<tr>
+										<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
+										<td class='step-details'>Integrated Allure reporting</td>
+									</tr>
+									<tr>
+										<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
+										<td class='step-details'>Driverless architecture with built-in browser control
+										</td>
+									</tr>
+									<tr>
+										<td class='status pass'><i class='fa fa-arrow-circle-o-right'></i></td>
+										<td class='step-details'>Optimized for fast and stable UI execution</td>
+									</tr>
 								</tbody>
 							</table>
 						</div>
 					</div>
 				</div>
 			</div>
-			<!-- /dashboard -->
-			
-			<!-- tests -->
-			<div id='test-view' class='row _addedTable'>
-				<div class='col _addedCell1'>
-					<div class='contents'>
-						<div class='card-panel heading'>
-							<h5>NIKUNJ JAMBUCHA<br></h5>
-							<h7>Automation Testing | Manual testing | API testing | JAVA | C# | Selenium</h7>
+			<div class='system-view'>
+				<div class='col l4 m12 s12'>
+				</div>
+			</div>
+		</div>
+		<!-- /dashboard -->
+
+		<!-- tests -->
+		<div id='test-view' class='row _addedTable'>
+			<div class='col _addedCell1'>
+				<div class='contents'>
+					<div class="card-panel heading">
+						<h4 class="name">Nikunj Jambucha</h4>
+						<p class="title">QA Automation Engineer</p>
+						<p class="subtitle">
+							API • Web • Mobile Automation | Java • Selenium • Playwright | CI/CD & Framework Design
+						</p>
+					</div>
+					<div class='card-panel filters'>
+						<div>
+							<a href='https://www.linkedin.com/in/nikunjjambucha/'
+								class='btn-floating btn-small waves-effect waves-light blue'>
+								<i class='fa fa-linkedin' style='cursor:pointer;' title='Linkedin' alt='Linkedin'></i>
+							</a>
 						</div>
-						<div class='card-panel filters'>
-							<div>
-								<a href='https://www.linkedin.com/in/nikunjjambucha/' class='btn-floating btn-small waves-effect waves-light blue'>
-									<i class='fa fa-linkedin' style='cursor:pointer;' title='Linkedin' alt='Linkedin'></i>
-								</a>
-							</div>
-							<div>&nbsp;&middot;&nbsp;</div>
-							<div>
-								<a href='tel:8469592427' class='btn-floating btn-small waves-effect waves-light blue'>
-									<i class='fa fa-mobile' style='cursor:pointer;' title='Mobile' alt='Mobile'></i>
-								</a>
-							</div>
-							<div>&nbsp;&middot;&nbsp;</div>
-							<div>
-								<a href='mailto:nikunjbjambucha@gmail.com' class='btn-floating btn-small waves-effect waves-light blue'>
-									<i class='fa fa-envelope' style='cursor:pointer;' title='Mail' alt='Mail' ></i>
-								</a>
-							</div>
-							<div>&nbsp;&middot;&nbsp;</div>
-							<div>
-								<a href='https://github.com/nikunjbjambucha' class='btn-floating btn-small waves-effect waves-light blue'>
-									<i class='fa fa-github' style='cursor:pointer;' title='Github' alt='Github'></i>
-								</a>
-							</div>
+						<div>&nbsp;&middot;&nbsp;</div>
+						<div>
+							<a href='mailto:nikunjbjambucha@gmail.com'
+								class='btn-floating btn-small waves-effect waves-light blue'>
+								<i class='fa fa-envelope' style='cursor:pointer;' title='Mail' alt='Mail'></i>
+							</a>
 						</div>
-						<div class='card-panel no-padding-h no-padding-v no-margin-v'>
-							<div class='wrapper'>
-								<ul id='test-collection' class='test-collection'>
-										<li class='collection-item test displayed active pass ' extentid='37237757-c065-4fbf-b1dd-3d87f5d05b02'>
-											<div class='test-head'>
-												<span class='test-name' style='cursor:pointer;'>Objective</span>
-												<span class='category-assigned hide '></span>
-											</div>
-											<div class='test-body'>
-												<div class='test-info'>
-												</div>
-												<div class='test-desc'></div>
-												<div class='test-attributes'>
-												</div>
-												<div class='test-steps'>
-													<table class='bordered table-results'>
-														<thead>
-															<tr>
-																<th style="width: 10%" ></th>
-																<th style="width: 90%">Description</th>
-															</tr>
-														</thead>
-														<tbody>
-																<tr>
-																	<td class='status info'><i class='fa fa-arrow-circle-o-right'></i></td>
-																	<td class='step-details' >To contribute in a positive way to the organization in terms of diligence, smart working and agility in return for job satisfaction, continuous and innovative learning, resulting in the growth of the organization as well as professional growth.</td>
-																</tr>
-																<tr>
-																	<td class='status info'><i class='fa fa-arrow-circle-o-right'></i></td>
-																	<td class='step-details' >Driven QA Automation Engineer with over 5+ years of experience specializing in creating and implementing efficient automated testing solutions.</td>
-																</tr>
-																<tr>
-																	<td class='status info'><i class='fa fa-arrow-circle-o-right'></i></td>
-																	<td class='step-details' >Proficient in a variety of testing frameworks and tools, including Selenium, JUnit, TestNG, and Cucumber.</td>
-																</tr>
-																<tr>
-																	<td class='status info'><i class='fa fa-arrow-circle-o-right'></i></td>
-																	<td class='step-details' >Adept at developing robust automation scripts and frameworks that enhance testing efficiency and accuracy.</td>
-																</tr>
-																<tr>
-																	<td class='status info'><i class='fa fa-arrow-circle-o-right'></i></td>
-																	<td class='step-details' >Demonstrated expertise in collaborating with cross-functional teams to ensure the delivery of high-quality software products.</td>
-																</tr>
-																<tr>
-																	<td class='status info'><i class='fa fa-arrow-circle-o-right'></i></td>
-																	<td class='step-details' >Seeking an opportunity to leverage my technical skills and testing acumen to contribute to a dynamic team while further advancing my expertise in automation testing methodologies.</td>
-																</tr>
-														</tbody>
-													</table>
-													<ul class='collapsible node-list' data-collapsible='accordion'>
-													</ul>
-												</div>
-											</div>
-										</li>
-								</ul>
-								<ul id='test-collection' class='test-collection'>
-									<li class='collection-item test displayed active pass ' extentid='37237757-c065-4fbf-b1dd-3d87f5d05b02'>
-										<div class='test-head'>
-											<span class='test-name' style='cursor:pointer;'>Professional Profile</span>
-											<span class='category-assigned hide '></span>
-										</div>
-										<div class='test-body'>
-											<div class='test-info'>
-											</div>
-											<div class='test-desc'></div>
-											<div class='test-attributes'>
-											</div>
-											<div class='test-steps'>
-												<table class='bordered table-results'>
-													<thead>
-														<tr>
-															<th style="width: 10%" ></th>
-															<th style="width: 90%">Description</th>
-														</tr>
-													</thead>
-													<tbody>
-															<tr>
-																<td class='status info'><i class='fa fa-arrow-circle-o-right'></i></td>
-																<td class='step-details'>Over 5+ years of hands-on experience in Software Testing, specializing in Automation Testing, Manual Testing, and API Testing.</td>
-															</tr>
-															<tr>
-																<td class='status info'><i class='fa fa-arrow-circle-o-right'></i></td>
-																<td class='step-details'>Demonstrated expertise in the Banking, Financial, and Payments Gateway domains, ensuring the delivery of high-quality software products.</td>
-															</tr>
-															<tr>
-																<td class='status info'><i class='fa fa-arrow-circle-o-right'></i></td>
-																<td class='step-details'>Proficient in Web Automation Testing, Mobile Automation Testing, and API Automation Testing, utilizing diverse frameworks powered by Selenium.</td>
-															</tr>
-															<tr>
-																<td class='status info'><i class='fa fa-arrow-circle-o-right'></i></td>
-																<td class='step-details'>Well-versed in Agile and Waterfall methodologies, with a strong grasp of Software Development Life Cycle (SDLC) and Software Testing Life Cycle (STLC).</td>
-															</tr>
-															<tr>
-																<td class='status info'><i class='fa fa-arrow-circle-o-right'></i></td>
-																<td class='step-details'>Accomplished in manual testing, adept at creating comprehensive test cases, detailed bug reports, and maintaining Requirements Traceability Matrix (RTM).</td>
-															</tr>
-															<tr>
-																<td class='status info'><i class='fa fa-arrow-circle-o-right'></i></td>
-																<td class='step-details'>Skilled in API Testing employing tools such as Postman, Rest API testing, and Restlet API tools.</td>
-															</tr>
-															<tr>
-																<td class='status info'><i class='fa fa-arrow-circle-o-right'></i></td>
-																<td class='step-details'>Proficiency in Performance Testing and Load Testing utilizing the Jmeter tool.</td>
-															</tr>
-															<tr>
-																<td class='status info'><i class='fa fa-arrow-circle-o-right'></i></td>
-																<td class='step-details'>Effective collaborator, capable of both teamwork and working autonomously.</td>
-															</tr>
-															<tr>
-																<td class='status info'><i class='fa fa-arrow-circle-o-right'></i></td>
-																<td class='step-details'>Thrives under pressure, excelling in multitasking and consistently delivering under challenging deadlines.</td>
-															</tr>
-													</tbody>
-												</table>
-												<ul class='collapsible node-list' data-collapsible='accordion'>
-												</ul>
-											</div>
-										</div>
-									</li>
-								</ul>
-								<ul id='test-collection' class='test-collection'>
-									<li class='collection-item test displayed active pass ' extentid='37237757-c065-4fbf-b1dd-3d87f5d05b02'>
-										<div class='test-head'>
-											<span class='test-name' style='cursor:pointer;'>Experience Profile</span>
-											<span class='category-assigned hide '></span>
-										</div>
-										<div class='test-body'>
-											<div class='test-info'>
-											</div>
-											<div class='test-desc'></div>
-											<div class='test-attributes'>
-											</div>
-											<div class='test-steps'>
-												<table class='bordered table-results'>
-													<thead>
-														<tr>
-															<th style="width: 10%" >Year</th>
-															<th style="width: 90%">Description</th>
-														</tr>
-													</thead>
-													<tbody>
-															<tr>
-																<td class='step-details' >Jan,2024 – Present</td>
-																<td class='step-details' ><b>Panamax Infotech</b> - QA Automation Engineer<br><i class='fa fa-arrow-circle-o-right status info'></i>	Directed manual testing efforts, identifying and resolving critical defects which improved system functionality. Utilized JIRA to track issues, Manage Sprints and manage communication across teams<br><i class='fa fa-arrow-circle-o-right status info'></i>	Strategically automated repetitive test cases, enhancing testing efficiency and accuracy</td>
-																</tr>
-															<tr>
-																<td class='step-details'>Jan, 2020 – Dec, 2023</td>
-																<td class='step-details' ><b>Tatvasoft</b> - Software Engineer QA<br><i class='fa fa-arrow-circle-o-right status info'></i>	Automated regression and functional testing, cutting testing time by 40% and increasing defect detection by 25%. Built robust test suites using Selenium and C#, integrated with Azure DevOps for streamlined CI/CD pipelines, enhancing release cycles and product quality<br><i class='fa fa-arrow-circle-o-right status info'></i>	Developed and executed comprehensive API testing strategies using Postman. Optimized performance testing by leveraging JMeter to simulate varying loads</td>
-															</tr>
-													</tbody>
-												</table>
-												<ul class='collapsible node-list' data-collapsible='accordion'>
-												</ul>
-											</div>
-										</div>
-									</li>
-								</ul>
-								<ul id='test-collection' class='test-collection'>
-									<li class='collection-item test displayed active pass ' extentid='37237757-c065-4fbf-b1dd-3d87f5d05b02'>
-										<div class='test-head'>
-											<span class='test-name' style='cursor:pointer;'>Project Profile</span>
-											<span class='category-assigned hide '></span>
-										</div>
-										<div class='test-body'>
-											<div class='test-info'>
-											</div>
-											<div class='test-desc'></div>
-											<div class='test-attributes'>
-											</div>
-											<div class='test-steps'>
-												<table class='bordered table-results'>
-													<thead>
-														<tr>
-															<th style="width: 20%" >Title</th>
-															<th style="width: 80%">Description</th>
-														</tr>
-													</thead>
-													<tbody>
-															<tr>
-																<td class='step-details' ><b>AmeriCash</b> - Selenium | C# | MSTest | SQL</td>
-																<td class='step-details' ><i class='fa fa-arrow-circle-o-right status info'></i>	Developed web automation framework using Selenium, C#, MSTest for loan management systems. Implemented POM, Test Data Driven approach, multi-browser support, and Extent reporting<br><i class='fa fa-arrow-circle-o-right status info'></i>	Maintained and expanded frameworks for evolving software requirements</td>
-															</tr>
-													</tbody>
-												</table>
-												<table class='bordered table-results'>
-													<thead>
-														<tr>
-															<th style="width: 20%"></th>
-															<th style="width: 80%"></th>
-														</tr>
-													</thead>
-													<tbody>
-															<tr>
-																<td class='step-details' ><b>GEICO</b> - Specflow | C# | RestSharp</td>
-																<td class='step-details' ><i class='fa fa-arrow-circle-o-right status info'></i>	Created API automation framework with C#, RestSharp, and SpecFlow. Integrated parallel testing, Extent reporting, and Selenium WebDriver <br><i class='fa fa-arrow-circle-o-right status info'></i>	Established connectivity with Azure Cosmos DB for enhanced data-driven testing capabilities. Contributed to increased testing efficiency and team collaboration</td>
-															</tr>
-													</tbody>
-												</table>
-												<table class='bordered table-results'>
-													<thead>
-														<tr>
-															<th style="width: 20%"></th>
-															<th style="width: 80%"></th>
-														</tr>
-													</thead>
-													<tbody>
-															<tr>
-																<td class='step-details' ><b>Mobifin</b> - Playwright | Java | TestNG</td>
-																<td class='step-details' ><i class='fa fa-arrow-circle-o-right status info'></i>	Conducted features testing. Developed Playwright and Java automation framework. Utilized TestNG with Maven for streamlined test execution <br><i class='fa fa-arrow-circle-o-right status info'></i>	Configured Maven pom.xml, executed tests in parallel, and generated detailed TestNG reports. Collaborated with teams to improve testing processes</td>
-															</tr>
-													</tbody>
-												</table>
-												<ul class='collapsible node-list' data-collapsible='accordion'>
-												</ul>
-											</div>
-										</div>
-									</li>
-								</ul>
-								<ul id='test-collection' class='test-collection'>
-									<li class='collection-item test displayed active pass ' extentid='37237757-c065-4fbf-b1dd-3d87f5d05b02'>
-										<div class='test-head'>
-											<span class='test-name' style='cursor:pointer;'>Technical Skills</span>
-											<span class='category-assigned hide '></span>
-										</div>
-										<div class='test-body'>
-											<div class='test-info'>
-											</div>
-											<div class='test-desc'></div>
-											<div class='test-attributes'>
-											</div>
-											<div class='test-steps'>
-												<table class='bordered table-results'>
-													<thead>
-														<tr>
-															<th style="width: 10%" >Status</th>
-															<th style="width: 30%" >Domain</th>
-															<th style="width: 60%">Description</th>
-														</tr>
-													</thead>
-													<tbody>
-															<tr>
-																<td class='status info'><i class='fa fa-arrow-circle-o-right'></i></td>
-																<td class='step-details'>Testing Tools</td>
-																<td class='step-details'>Selenium, Appium, Postman, JMeter</td>
-															</tr>
-															<tr>
-																<td class='status info'><i class='fa fa-arrow-circle-o-right'></i></td>
-																<td class='step-details'>Automation Framework</td>
-																<td class='step-details'>JUnit, Nunit, MSTest, TestNG, Cucumber, BDD, Data Driven</td>
-															</tr>
-															<tr>
-																<td class='status info'><i class='fa fa-arrow-circle-o-right'></i></td>
-																<td class='step-details'>Programming Languages and Technologies</td>
-																<td class='step-details'>Java, C#, Python, Groovy, JavaScript, SQL, C++, C, HTML</td>
-															</tr>
-															<tr>
-																<td class='status info'><i class='fa fa-arrow-circle-o-right'></i></td>
-																<td class='step-details'>Softwares and Cloud systems</td>
-																<td class='step-details'>Eclipse, Visual Studio, Git, Microsoft Azure, Jira, Zoho</td>
-															</tr>
-													</tbody>
-												</table>
-												<ul class='collapsible node-list' data-collapsible='accordion'>
-											</ul>
-											</div>
-										</div>
-									</li>
-								</ul>
-								<ul id='test-collection' class='test-collection'>
-									<li class='collection-item test displayed active pass ' extentid='37237757-c065-4fbf-b1dd-3d87f5d05b02'>
-										<div class='test-head'>
-											<span class='test-name' style='cursor:pointer;'>Academic Profile</span>
-											<span class='category-assigned hide '></span>
-										</div>
-										<div class='test-body'>
-											<div class='test-info'>
-											</div>
-											<div class='test-desc'></div>
-											<div class='test-attributes'>
-											</div>
-											<div class='test-steps'>
-												<table class='bordered table-results'>
-													<thead>
-														<tr>
-															<th style="width: 40%">Qualification</th>
-															<th style="width: 40%">School/College</th>
-															<th style="width: 10%">Year of Completion</th>
-															<th style="width: 10%">Score</th>
-														</tr>
-													</thead>
-													<tbody>
-															<tr>
-																<td class='step-details' >B.Tech in Electronics Engineering</td>
-																<td class='step-details' >Birla Vishvakarma Mahavidhyalaya</td>
-																<td class='step-details' >2020</td>
-																<td class='step-details' >6.86(CGPA)</td>
-															</tr>
-															<tr>
-																<td class='step-details' >PCM With Computer science</td>
-																<td class='step-details' >Shree B.N.Virani School - Bhavnagar</td>
-																<td class='step-details' >2016</td>
-																<td class='step-details' >69.69%</td>
-															</tr>
-															<tr>
-																<td class='step-details' >S.S.C.</td>
-																<td class='step-details' >Shree B.N.Virani School - Bhavnagar</td>
-																<td class='step-details' >2014</td>
-																<td class='step-details' >78%</td>
-															</tr>
-													</tbody>
-												</table>
-												<ul class='collapsible node-list' data-collapsible='accordion'>
-												</ul>
-											</div>
-										</div>
-									</li>
-								</ul>
-								<ul id='test-collection' class='test-collection'>
-									<li class='collection-item test displayed active pass ' extentid='37237757-c065-4fbf-b1dd-3d87f5d05b02'>
-										<div class='test-head'>
-											<span class='test-name' style='cursor:pointer;'>Certification</span>
-											<span class='category-assigned hide '></span>
-										</div>
-										<div class='test-body'>
-											<div class='test-info'>
-											</div>
-											<div class='test-desc'></div>
-											<div class='test-attributes'>
-											</div>
-											<div class='test-steps'>
-												<table class='bordered table-results'>
-													<thead>
-														<tr>
-															<th style="width: 10%" >Status</th>
-															<th style="width: 90%">Description</th>
-														</tr>
-													</thead>
-													<tbody>
-															<tr>
-																<td class='status info'><i class='fa fa-arrow-circle-o-right'></i></td>
-																<td class='step-details' >Enhancing Soft Skills and Personality(NPTEL-IIT Kanpur)</td>
-															</tr>
-															<tr>
-																<td class='status info'><i class='fa fa-arrow-circle-o-right'></i></td>
-																<td class='step-details' >Employment Communication – A Lab Based Course(NPTEL-IIT Kharagpur)</td>
-															</tr>
-															<tr>
-																<td class='status info'><i class='fa fa-arrow-circle-o-right'></i></td>
-																<td class='step-details' >Internet Of Things(NPTEL-IIT Kharagpur)</td>
-															</tr>
-													</tbody>
-												</table>
-												<ul class='collapsible node-list' data-collapsible='accordion'>
-												</ul>
-											</div>
-										</div>
-									</li>
-								</ul>
-								<ul id='test-collection' class='test-collection'>
-									<li class='collection-item test displayed active info ' extentid='37237757-c065-4fbf-b1dd-3d87f5d05b02'>
-										<div class='test-head'>
-											<span class='test-name' style='cursor:pointer;'>Personal Attributes</span>
-											<span class='category-assigned hide '></span>
-										</div>
-										<div class='test-body'>
-											<div class='test-info'>
-											</div>
-											<div class='test-desc'></div>
-											<div class='test-attributes'>
-											</div>
-											<div class='test-steps'>
-												<table class='bordered table-results'>
-													<thead>
-														<tr>
-															<th style="width: 10%" >Status</th>
-															<th style="width: 90%">Description</th>
-														</tr>
-													</thead>
-													<tbody>
-															<tr>
-																<td class='status info'><i class='fa fa-arrow-circle-o-right'></i></td>
-																<td class='step-details' >Good team player skills</td>
-															</tr>
-															<tr>
-																<td class='status info'><i class='fa fa-arrow-circle-o-right'></i></td>
-																<td class='step-details' >Good communication skills</td>
-															</tr>
-															<tr>
-																<td class='status info'><i class='fa fa-arrow-circle-o-right'></i></td>
-																<td class='step-details' >Dedication</td>
-															</tr>
-															<tr>
-																<td class='status info'><i class='fa fa-arrow-circle-o-right'></i></td>
-																<td class='step-details' >Responsible</td>
-															</tr>
-															<tr>
-																<td class='status info'><i class='fa fa-arrow-circle-o-right'></i></td>
-																<td class='step-details' >Confident</td>
-															</tr>
-															<tr>
-																<td class='status info'><i class='fa fa-arrow-circle-o-right'></i></td>
-																<td class='step-details' >Quick learning capabilities.</td>
-															</tr>
-													</tbody>
-												</table>
-												<ul class='collapsible node-list' data-collapsible='accordion'>
-												</ul>
-											</div>
-										</div>
-									</li>
-								</ul>
-							</div>
+						<div>&nbsp;&middot;&nbsp;</div>
+						<div>
+							<a href='https://github.com/nikunjbjambucha'
+								class='btn-floating btn-small waves-effect waves-light blue'>
+								<i class='fa fa-github' style='cursor:pointer;' title='Github' alt='Github'></i>
+							</a>
+						</div>
+						<div>&nbsp;&middot;&nbsp;</div>
+						<div>
+							<a href='tel:8469592427' class='btn-floating btn-small waves-effect waves-light blue'>
+								<i class='fa fa-mobile' style='cursor:pointer;' title='Mobile' alt='Mobile'></i>
+							</a>
+						</div>
+						<div>&nbsp;&middot;&nbsp;</div>
+						<div>
+							<a href='data/resume.pdf' download
+								class='btn-floating btn-small waves-effect waves-light blue'>
+								<i class='fa fa-file-pdf-o' style='cursor:pointer;' title='Resume'
+									alt='Download Resume'></i>
+							</a>
 						</div>
 					</div>
-				</div>
-				<div id='test-details-wrapper' class='col _addedCell2'>
-					<div class='contents'>
-						<div class='card-panel details-view'>
-							<h5 class='details-name'></h5>
-							
-							<div class='details-container'>
-							</div>
+					<div class='card-panel no-padding-h no-padding-v no-margin-v'>
+						<div class='wrapper'>
+							<ul id='test-collection' class='test-collection'>
+								<li class='collection-item test displayed active pass '
+									extentid='37237757-c065-4fbf-b1dd-3d87f5d05b02'>
+									<div class='test-head'>
+										<span class='test-name' style='cursor:pointer;'>Professional Snapshot</span>
+										<span class='category-assigned hide '></span>
+									</div>
+									<div class='test-body'>
+										<div class='test-info'>
+										</div>
+										<div class='test-desc'></div>
+										<div class='test-attributes'>
+										</div>
+										<div class='test-steps'>
+											<div class="card-panel career-card">
+												<div style="margin-bottom:12px; font-weight:600;" class="title">
+													✔ <span data-experience></span> Years | QA Automation Engineer |
+													API, Web & Mobile | Banking
+													&
+													Payments
+												</div>
+												<div class="career-summary">
+													<div class="summary-item pass">
+														<i class="fa fa-check-circle"></i>
+														<div class="summary-text">
+															<div class="summary-title">Automation Leadership</div>
+															<div class="summary-desc">Framework Design • CI/CD
+																Integration • Test Strategy</div>
+														</div>
+													</div>
+
+													<div class="summary-item pass">
+														<i class="fa fa-check-circle"></i>
+														<div class="summary-text">
+															<div class="summary-title">Testing Coverage</div>
+															<div class="summary-desc">Web • Mobile • API • Performance •
+																Security Basics
+															</div>
+														</div>
+													</div>
+
+													<div class="summary-item pass">
+														<i class="fa fa-check-circle"></i>
+														<div class="summary-text">
+															<div class="summary-title">Domains</div>
+															<div class="summary-desc">Banking • Financial Services •
+																Payments • Lending</div>
+														</div>
+													</div>
+
+													<div class="summary-item pass">
+														<i class="fa fa-check-circle"></i>
+														<div class="summary-text">
+															<div class="summary-title">Execution</div>
+															<div class="summary-desc">Agile • CI/CD • Parallel
+																Automation</div>
+														</div>
+													</div>
+
+													<div class="summary-item pass">
+														<i class="fa fa-check-circle"></i>
+														<div class="summary-text">
+															<div class="summary-title">Automation Stack</div>
+															<div class="summary-desc">Java • C# • Selenium • Playwright
+																• REST API • CI/CD • Jenkins • Git</div>
+														</div>
+													</div>
+
+													<div class="summary-item trophy">
+														<i class="fa fa-trophy"></i>
+														<div class="summary-text">
+															<div class="summary-title">Award</div>
+															<div class="summary-desc">Above & Beyond Award – Quality
+																Excellence & Automation Impact</div>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<ul class='collapsible node-list' data-collapsible='accordion'>
+											</ul>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<ul id='test-collection' class='test-collection'>
+								<li class='collection-item test displayed active pass '
+									extentid='37237757-c065-4fbf-b1dd-3d87f5d05b02'>
+									<div class='test-head'>
+										<span class='test-name' style='cursor:pointer;'>Professional Summary</span>
+										<span class='category-assigned hide '></span>
+									</div>
+									<div class='test-body'>
+										<div class='test-info'>
+										</div>
+										<div class='test-desc'></div>
+										<div class='test-attributes'>
+										</div>
+										<div class='test-steps'>
+											<div class="summary-text-block">
+												<ul class="summary-list">
+													<li>
+														<i class="fa fa-check-circle"></i>
+														<span><b>QA Automation Engineer with <span data-experience></span> years of
+																experience</b>
+															across Automation, Manual, API, and Performance Testing in
+															Banking, Financial Services, and Payments domains.</span>
+													</li>
+													<li>
+														<i class="fa fa-code"></i>
+														<span>Hands-on expertise in <b>Java, C#, and JavaScript-based
+																automation frameworks</b> using Selenium, Playwright,
+															and REST API testing.</span>
+													</li>
+													<li>
+														<i class="fa fa-cogs"></i>
+														<span>Strong experience in <b>Web, Mobile, and API
+																automation</b> using Postman and JMeter for functional
+															and non-functional test coverage.</span>
+													</li>
+													<li>
+														<i class="fa fa-refresh"></i>
+														<span>Well-versed in <b>Agile and Waterfall methodologies</b>,
+															with solid understanding of SDLC, STLC, defect lifecycle,
+															and RTM.</span>
+													</li>
+													<li>
+														<i class="fa fa-line-chart"></i>
+														<span>Focused on <b>improving test efficiency, release
+																confidence, and product quality</b> through automation
+															strategy, CI/CD integration, and continuous
+															improvement.</span>
+													</li>
+												</ul>
+											</div>
+
+											<ul class='collapsible node-list' data-collapsible='accordion'>
+											</ul>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<ul id='test-collection' class='test-collection'>
+								<li class='collection-item test displayed active pass '
+									extentid='37237757-c065-4fbf-b1dd-3d87f5d05b02'>
+									<div class='test-head'>
+										<span class='test-name' style='cursor:pointer;'>Experience Profile</span>
+										<span class='category-assigned hide '></span>
+									</div>
+									<div class='test-body'>
+										<div class='test-info'>
+										</div>
+										<div class='test-desc'></div>
+										<div class='test-attributes'>
+										</div>
+										<div class='test-steps'>
+											<table class="bordered table-results">
+												<thead>
+													<tr>
+														<th style="width: 10%">Year</th>
+														<th style="width: 90%">Experience Details</th>
+													</tr>
+												</thead>
+
+												<tbody>
+
+													<!-- ================= BANKAI ================= -->
+													<tr>
+														<td class="step-details"><b>2024 – Present</b></td>
+														<td class="step-details">
+															<b>Bankai Infotech (Panamax)</b> — QA Automation Engineer
+														</td>
+													</tr>
+
+													<tr>
+														<td></td>
+														<td class="step-details">
+															<i class="fa fa-cogs status info"></i>
+															Designed and developed an <b>enterprise-grade QA automation
+																platform</b> using
+															Java, Maven, Selenium, Appium, and REST APIs across Web,
+															Mobile, and API layers.
+														</td>
+													</tr>
+
+													<tr>
+														<td></td>
+														<td class="step-details">
+															<i class="fa fa-bolt status info"></i>
+															Implemented <b>WebSocket-based real-time communication</b>
+															with the automation
+															controller to fetch configurations, API details, query data,
+															element metadata, and live execution status.
+														</td>
+													</tr>
+
+													<tr>
+														<td></td>
+														<td class="step-details">
+															<i class="fa fa-database status info"></i>
+															Utilized <b>Redis for global test data storage and
+																updates</b>, enabling secure,
+															reusable, and high-performance data sharing across
+															multiple test suites executions.
+														</td>
+													</tr>
+
+													<tr>
+														<td></td>
+														<td class="step-details">
+															<i class="fa fa-play-circle status info"></i>
+															Enabled <b>parallel & scheduled CI/CD execution</b> via
+															Jenkins, significantly
+															reducing regression execution time and improving release
+															predictability.
+														</td>
+													</tr>
+
+													<tr>
+														<td></td>
+														<td class="step-details">
+															<i class="fa fa-line-chart status info"></i>
+															Built a <b>centralized QA Control Center</b> to manage
+															api details, database query, object repositories,
+															role-based and project-based
+															execution visibility and analytics.
+														</td>
+													</tr>
+
+													<tr>
+														<td></td>
+														<td class="step-details">
+															<span class="label pass">Impact</span>
+															Established a scalable, CI/CD-enabled automation ecosystem
+															improving execution
+															efficiency, reliability, and release confidence.
+														</td>
+													</tr>
+
+													<!-- ================= TATVASOFT ================= -->
+													<tr>
+														<td class="step-details"><b>2020 – 2023</b></td>
+														<td class="step-details">
+															<b>Tatvasoft</b> — Software Engineer (QA)
+														</td>
+													</tr>
+
+													<tr>
+														<td></td>
+														<td class="step-details">
+															<i class="fa fa-flask status info"></i>
+															Automated regression and functional testing using
+															<b>Selenium and C#</b>,
+															reducing testing time by <b>40%</b> and increasing defect
+															detection by <b>25%</b>.
+														</td>
+													</tr>
+
+													<tr>
+														<td></td>
+														<td class="step-details">
+															<i class="fa fa-code status info"></i>
+															Designed and maintained <b>reusable automation
+																frameworks</b>, ensuring long-term
+															scalability and maintainability.
+														</td>
+													</tr>
+
+													<tr>
+														<td></td>
+														<td class="step-details">
+															<i class="fa fa-cloud status info"></i>
+															Integrated automation with <b>Azure DevOps CI/CD
+																pipelines</b>, enabling
+															continuous testing and faster feedback cycles.
+														</td>
+													</tr>
+
+													<tr>
+														<td></td>
+														<td class="step-details">
+															<i class="fa fa-exchange status info"></i>
+															Developed and executed <b>API automation strategies</b>
+															using Postman and
+															performed performance testing using JMeter.
+														</td>
+													</tr>
+
+													<tr>
+														<td></td>
+														<td class="step-details">
+															<span class="label pass">Impact</span>
+															Strengthened automation maturity, CI/CD adoption, and
+															overall product quality
+															across releases.
+														</td>
+													</tr>
+
+												</tbody>
+											</table>
+											<ul class='collapsible node-list' data-collapsible='accordion'>
+											</ul>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<ul id='test-collection' class='test-collection'>
+								<li class='collection-item test displayed active pass '
+									extentid='37237757-c065-4fbf-b1dd-3d87f5d05b02'>
+									<div class='test-head'>
+										<span class='test-name' style='cursor:pointer;'>Project Profile</span>
+										<span class='category-assigned hide '></span>
+									</div>
+									<div class='test-body'>
+										<div class='test-info'>
+										</div>
+										<div class='test-desc'></div>
+										<div class='test-attributes'>
+										</div>
+										<div class='test-steps'>
+											<table class="bordered table-results">
+												<thead>
+													<tr>
+														<th style="width: 22%">Project</th>
+														<th style="width: 78%">Details</th>
+													</tr>
+												</thead>
+
+												<tbody>
+
+													<!-- ================= AmeriCash ================= -->
+													<tr>
+														<td class="step-details">
+															<b>AmeriCash</b><br>
+															<span style="font-size:12px;">
+																Selenium · C# · MSTest · SQL
+															</span>
+														</td>
+														<td class="step-details">
+															<ul class="summary-list">
+																<li>
+																	<i class="fa fa-check-circle"></i>
+																	<span>Designed and implemented a scalable web
+																		automation framework using Selenium and C# for a
+																		loan management system.</span>
+																</li>
+																<li>
+																	<i class="fa fa-check-circle"></i>
+																	<span>Applied Page Object Model (POM), data-driven
+																		testing, and multi-browser execution to improve
+																		test reusability and coverage.</span>
+																</li>
+																<li>
+																	<i class="fa fa-check-circle"></i>
+																	<span>Integrated Extent Reports and SQL-based
+																		validations to enhance execution visibility and
+																		backend data accuracy.</span>
+																</li>
+																<li>
+																	<i class="fa fa-check-circle"></i>
+																	<span><b>Impact:</b> Improved automation stability
+																		and reduced manual regression effort for
+																		critical financial workflows.</span>
+																</li>
+															</ul>
+														</td>
+													</tr>
+
+													<!-- ================= GEICO ================= -->
+													<tr>
+														<td class="step-details">
+															<b>GEICO</b><br>
+															<span style="font-size:12px;">
+																SpecFlow · C# · RestSharp · Selenium · Azure Cosmos DB
+															</span>
+														</td>
+														<td class="step-details">
+															<ul class="summary-list">
+																<li>
+																	<i class="fa fa-check-circle"></i>
+																	<span>Built an API automation framework using C#,
+																		RestSharp, and SpecFlow to validate insurance
+																		service workflows.</span>
+																</li>
+																<li>
+																	<i class="fa fa-check-circle"></i>
+																	<span>Enabled parallel execution and Extent
+																		reporting, improving execution speed and test
+																		traceability.</span>
+																</li>
+																<li>
+																	<i class="fa fa-check-circle"></i>
+																	<span>Integrated Azure Cosmos DB for data-driven
+																		testing and dynamic API validations.</span>
+																</li>
+																<li>
+																	<i class="fa fa-check-circle"></i>
+																	<span><b>Impact:</b> Increased API test reliability
+																		and strengthened collaboration between QA and
+																		backend teams.</span>
+																</li>
+															</ul>
+														</td>
+													</tr>
+
+													<!-- ================= Mobifin ================= -->
+													<tr>
+														<td class="step-details">
+															<b>Mobifin</b><br>
+															<span style="font-size:12px;">
+																Java · Maven · Selenium · Appium · Rest API · Jenkins
+																· Redis · WebSocket
+															</span>
+														</td>
+														<td class="step-details">
+															<ul class="summary-list">
+																<li>
+																	<i class="fa fa-check-circle"></i>
+																	<span>Designed and developed a <b>Java-based
+																			enterprise QA automation framework</b>
+																		supporting Web, API, and Mobile testing.</span>
+																</li>
+																<li>
+																	<i class="fa fa-check-circle"></i>
+																	<span>Implemented <b>WebSocket-based real-time
+																			communication</b> to fetch and update API
+																		configurations, query details, element metadata,
+																		and live test execution status from a central
+																		automation controller.</span>
+																</li>
+																<li>
+																	<i class="fa fa-check-circle"></i>
+																	<span>Integrated <b>Redis</b> for global test data
+																		storage and updates, enabling data reuse and
+																		synchronization across multiple test suites and
+																		parallel executions.</span>
+																</li>
+																<li>
+																	<i class="fa fa-check-circle"></i>
+																	<span>Enabled parallel & scheduled CI/CD execution
+																		via Jenkins CI/CD pipelines
+																		for scheduled and on-demand test runs.</span>
+																</li>
+																<li>
+																	<i class="fa fa-check-circle"></i>
+																	<span>Built a centralized
+																		<b>QA Control Center</b> to manage api details,
+																		database query, object repositories, role-based
+																		and project-based execution visibility and
+																		analytics.</span>
+																</li>
+																<li>
+																	<i class="fa fa-check-circle"></i>
+																	<span><b>Impact:</b> Delivered a scalable,
+																		CI/CD-enabled automation ecosystem that
+																		significantly improved execution efficiency,
+																		debugging speed, and release confidence for
+																		enterprise banking applications.</span>
+																</li>
+															</ul>
+														</td>
+													</tr>
+
+												</tbody>
+											</table>
+
+											<ul class='collapsible node-list' data-collapsible='accordion'>
+											</ul>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<ul id="test-collection" class="test-collection">
+								<li class="collection-item test displayed active pass">
+									<div class="test-head">
+										<span class="test-name" style="cursor:pointer;">Technical Expertise</span>
+									</div>
+
+									<div class="test-body">
+										<div class="test-steps">
+
+											<table class="bordered table-results">
+												<thead>
+													<tr>
+														<th style="width: 22%">Category</th>
+														<th style="width: 78%">Skills & Expertise</th>
+													</tr>
+												</thead>
+
+												<tbody>
+
+													<!-- Automation & Testing -->
+													<tr>
+														<td class="step-details">
+															<i class="fa fa-cogs"></i> <b>Automation & Testing</b>
+														</td>
+														<td class="step-details">
+															Selenium WebDriver, Appium, Playwright, REST API Testing,
+															Web Automation, Mobile Automation, Data-Driven & Hybrid
+															Frameworks
+														</td>
+													</tr>
+
+													<!-- Frameworks & BDD -->
+													<tr>
+														<td class="step-details">
+															<i class="fa fa-sitemap"></i> <b>Frameworks & BDD</b>
+														</td>
+														<td class="step-details">
+															TestNG, JUnit, MSTest, NUnit, Cucumber, SpecFlow,
+															Behavior-Driven Development (BDD)
+														</td>
+													</tr>
+
+													<!-- Programming -->
+													<tr>
+														<td class="step-details">
+															<i class="fa fa-code"></i> <b>Programming & Scripting</b>
+														</td>
+														<td class="step-details">
+															Java, C#, JavaScript, SQL, Python (Basic)
+														</td>
+													</tr>
+
+													<!-- CI/CD & DevOps -->
+													<tr>
+														<td class="step-details">
+															<i class="fa fa-refresh"></i> <b>CI/CD & DevOps</b>
+														</td>
+														<td class="step-details">
+															Jenkins, Maven, Git, Linux, CI/CD Pipelines,
+															Parallel & Scheduled Execution
+														</td>
+													</tr>
+
+													<!-- Reporting & Monitoring -->
+													<tr>
+														<td class="step-details">
+															<i class="fa fa-bar-chart"></i> <b>Reporting &
+																Monitoring</b>
+														</td>
+														<td class="step-details">
+															Extent Reports, TestNG Reports,
+															Real-Time Execution Monitoring & Dashboards
+														</td>
+													</tr>
+
+													<!-- Data & Tools -->
+													<tr>
+														<td class="step-details">
+															<i class="fa fa-database"></i> <b>Data & Tools</b>
+														</td>
+														<td class="step-details">
+															Redis, Postman, JMeter, SQLite, MySQL, Oracle,
+															Jira, Azure DevOps, Eclipse, IntelliJ, Visual Studio
+														</td>
+													</tr>
+
+												</tbody>
+											</table>
+
+										</div>
+									</div>
+								</li>
+							</ul>
+							<ul id='test-collection' class='test-collection'>
+								<li class='collection-item test displayed active pass '
+									extentid='37237757-c065-4fbf-b1dd-3d87f5d05b02'>
+									<div class='test-head'>
+										<span class='test-name' style='cursor:pointer;'>Education</span>
+										<span class='category-assigned hide '></span>
+									</div>
+									<div class='test-body'>
+										<div class='test-info'>
+										</div>
+										<div class='test-desc'></div>
+										<div class='test-attributes'>
+										</div>
+										<div class='test-steps'>
+											<table class='bordered table-results'>
+												<thead>
+													<tr>
+														<th style="width: 50%">Qualification</th>
+														<th style="width: 35%">School/College</th>
+														<th style="width: 15%">Year of Completion</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td class='step-details'>B.Tech in Electronics Engineering</td>
+														<td class='step-details'>Birla Vishvakarma Mahavidhyalaya</td>
+														<td class='step-details'>2020</td>
+													</tr>
+													<tr>
+														<td class='step-details'>PCM With Computer science</td>
+														<td class='step-details'>Shree B.N.Virani School - Bhavnagar
+														</td>
+														<td class='step-details'>2016</td>
+													</tr>
+													<tr>
+														<td class='step-details'>S.S.C.</td>
+														<td class='step-details'>Shree B.N.Virani School - Bhavnagar
+														</td>
+														<td class='step-details'>2014</td>
+													</tr>
+												</tbody>
+											</table>
+											<ul class='collapsible node-list' data-collapsible='accordion'>
+											</ul>
+										</div>
+									</div>
+								</li>
+							</ul>
+							<ul id="test-collection" class="test-collection">
+								<li class="collection-item test displayed active pass">
+									<div class="test-head">
+										<span class="test-name" style="cursor:pointer;">
+											Certifications, Coursework & Achievements
+										</span>
+									</div>
+
+									<div class="test-body">
+										<div class="test-steps">
+
+											<!-- ================= COURSEWORK ================= -->
+											<h6 style="margin-top:10px; font-weight:600;">
+												Professional Coursework
+											</h6>
+
+											<table class="bordered table-results">
+												<thead>
+													<tr>
+														<th style="width: 35%">Course</th>
+														<th style="width: 65%">Institution & Focus</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td class="step-details">
+															Enhancing Soft Skills & Personality
+														</td>
+														<td class="step-details">
+															<b>NPTEL – IIT Kanpur</b><br>
+															Professional communication, leadership traits, and workplace
+															effectiveness
+														</td>
+													</tr>
+
+													<tr>
+														<td class="step-details">
+															Employment Communication (Lab-Based)
+														</td>
+														<td class="step-details">
+															<b>NPTEL – IIT Kharagpur</b><br>
+															Business communication, documentation, presentations, and
+															team collaboration
+														</td>
+													</tr>
+
+													<tr>
+														<td class="step-details">
+															Internet of Things (IoT)
+														</td>
+														<td class="step-details">
+															<b>NPTEL – IIT Kharagpur</b><br>
+															Fundamentals of connected systems, sensors, data flow, and
+															system integration
+														</td>
+													</tr>
+												</tbody>
+											</table>
+
+											<!-- ================= ACHIEVEMENTS ================= -->
+											<h6 style="margin-top:22px; font-weight:600;">
+												Professional Achievements
+											</h6>
+
+											<table class="bordered table-results">
+												<thead>
+													<tr>
+														<th style="width: 5%">🏆</th>
+														<th style="width: 95%">Achievement</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td class="step-details">🏅
+														</td>
+														<td class="step-details">
+															<b>Above & Beyond Award</b><br>
+															Awarded for delivering exceptional impact in QA automation,
+															including building scalable
+															automation frameworks and achieving measurable improvements
+															in test execution and release quality.
+														</td>
+													</tr>
+												</tbody>
+											</table>
+
+										</div>
+									</div>
+								</li>
+							</ul>
+							<ul id="test-collection" class="test-collection">
+								<li class="collection-item test displayed active info">
+									<div class="test-head">
+										<span class="test-name" style="cursor:pointer;">
+											Professional Strengths & Work Ethic
+										</span>
+									</div>
+
+									<div class="test-body">
+										<div class="test-steps">
+
+											<table class="bordered table-results">
+												<thead>
+													<tr>
+														<th style="width: 10%"></th>
+														<th style="width: 90%">Strength</th>
+													</tr>
+												</thead>
+												<tbody>
+
+													<tr>
+														<td class="status info pass"><i class="fa fa-check-circle"></i>
+														</td>
+														<td class="step-details">
+															<b>Automation Ownership:</b> Takes end-to-end responsibility
+															for automation strategy,
+															framework architecture, execution stability, and quality
+															outcomes.
+														</td>
+													</tr>
+
+													<tr>
+														<td class="status info pass"><i class="fa fa-check-circle"></i>
+														</td>
+														<td class="step-details">
+															<b>Cross-Functional Collaboration:</b> Works closely with
+															QA, Development, Product,
+															and DevOps teams to align testing strategy with business
+															goals.
+														</td>
+													</tr>
+
+													<tr>
+														<td class="status info pass"><i class="fa fa-check-circle"></i>
+														</td>
+														<td class="step-details">
+															<b>Problem Solving & Debugging:</b> Strong analytical
+															mindset for identifying root causes,
+															improving test reliability, and resolving complex automation
+															issues.
+														</td>
+													</tr>
+
+													<tr>
+														<td class="status info pass"><i class="fa fa-check-circle"></i>
+														</td>
+														<td class="step-details">
+															<b>Agile & Delivery Focus:</b> Experienced in Agile
+															environments, sprint execution,
+															defect triage, and ensuring continuous delivery of
+															high-quality releases.
+														</td>
+													</tr>
+
+													<tr>
+														<td class="status info pass"><i class="fa fa-check-circle"></i>
+														</td>
+														<td class="step-details">
+															<b>Continuous Improvement:</b> Proactively evaluates tools,
+															frameworks, and processes
+															to enhance automation efficiency, scalability, and
+															maintainability.
+														</td>
+													</tr>
+
+													<tr>
+														<td class="status info pass"><i class="fa fa-check-circle"></i>
+														</td>
+														<td class="step-details">
+															<b>Adaptability:</b> Quickly adapts to new domains,
+															technologies, and project requirements,
+															including Banking, Financial Services, and Payments systems.
+														</td>
+													</tr>
+
+												</tbody>
+											</table>
+
+										</div>
+									</div>
+								</li>
+							</ul>
+
 						</div>
 					</div>
 				</div>
 			</div>
-			<!-- /tests -->
-			
+			<div id='test-details-wrapper' class='col _addedCell2'>
+				<div class='contents'>
+					<div class='card-panel details-view'>
+						<h5 class='details-name'></h5>
+
+						<div class='details-container'>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-		<!-- /container -->
-		
-		<script src='https://cdn.rawgit.com/anshooarora/extentreports/6032d73243ba4fe4fb8769eb9c315d4fdf16fe68/cdn/extent.js' type='text/javascript'></script>
-		<script>
-			var figure = $('.card-panel').hover(hovervideo, hidevideo)
-			function hovervideo(e){
-				$('.videobox', this).toggle();
-				$('.projectinfo', this).toggle();
-				$('video', this).get(0).play();
+		<!-- /tests -->
 
-			}
-			function hidevideo(e){
-				$('.videobox', this).toggle();
-				$('.projectinfo', this).toggle();
-				$('video', this).get(0).pause();
-				$('#myvid', this).get(0).currentTime = 0;
-				
-			}
-		</script>
+	</div>
+	<!-- /container -->
 
-	</body>
+	<script
+		src='https://cdn.rawgit.com/anshooarora/extentreports/6032d73243ba4fe4fb8769eb9c315d4fdf16fe68/cdn/extent.js'
+		type='text/javascript'></script>
+
+	<script>
+		var figure = $('.card-panel').hover(hovervideo, hidevideo)
+		function hovervideo(e) {
+			$('.videobox', this).toggle();
+			$('.projectinfo', this).toggle();
+			$('video', this).get(0).play();
+
+		}
+		function hidevideo(e) {
+			$('.videobox', this).toggle();
+			$('.projectinfo', this).toggle();
+			$('video', this).get(0).pause();
+			$('#myvid', this).get(0).currentTime = 0;
+
+		}
+	</script>
+
+	<script>
+		function calculateExperience(startYear) {
+			const startDate = new Date(startYear, 0, 1);
+			const today = new Date();
+
+			const totalMonths =
+				(today.getFullYear() - startDate.getFullYear()) * 12 +
+				(today.getMonth() - startDate.getMonth());
+
+			const years = totalMonths / 12;
+			const bucket = Math.floor(years * 2) / 2;
+
+			return bucket.toFixed(1) + "+";
+		}
+
+		function applyExperience() {
+			document.querySelectorAll("[data-experience]").forEach(el => {
+				el.textContent = calculateExperience(2020);
+			});
+		}
+
+		// Patch Extent internal function
+		const originalUpdateStage = window._updateCurrentStage;
+
+		window._updateCurrentStage = function (stage) {
+			if (originalUpdateStage) {
+				originalUpdateStage(stage);
+			}
+
+			// Apply AFTER Extent finishes rendering
+			setTimeout(applyExperience, 50);
+		};
+
+		// Initial load
+		setTimeout(applyExperience, 500);
+	</script>
+
+
+</body>
+
 </html>
